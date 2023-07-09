@@ -15,11 +15,15 @@
 
 
 
+
+
 ## p 标签
 
 ```html
 <p>p标签</p>
 ```
+
+
 
 
 
@@ -33,6 +37,8 @@
 
 
 
+
+
 ## img 标签
 
 ```html
@@ -41,13 +47,17 @@
 
 
 
+
+
 ## base标签
+
+> base应该写在head之内
 
 ```html
 <base target="_blank">
 ```
 
-`base应该写在head之内`
+
 
 
 
@@ -61,6 +71,8 @@
 | &amp;yen;  | &yen;  |
 | &amp;copy; | &copy; |
 | &amp;reg;  | &reg;  |
+
+
 
 
 
@@ -84,6 +96,8 @@
 ```html
 <!-- 注释不会显示在浏览器窗口中，但是可以在网页源代码上看到 -->
 ```
+
+
 
 
 
@@ -124,6 +138,8 @@
 
 
 
+
+
 ## div标签（盒子）
 
 ```html
@@ -132,6 +148,8 @@
     <p></p>
 </div>
 ```
+
+
 
 
 
@@ -151,12 +169,16 @@
 
 
 
+
+
 ## 行内式（内联样式）
 
 ```html
 <标签 style="属性:属性值;">content</标签>
 <h1 style="color:red;">红色的h1</h1>
 ```
+
+
 
 
 
@@ -177,6 +199,8 @@
 
 
 
+
+
 ## 外部样式
 
 > 使用link标签将外部样式文件链接到当前HTML文档中，同样也要写在head标签中
@@ -186,6 +210,8 @@
     <link href"CSS文件地址/路径" rel="stylesheet">
 </head>
 ```
+
+
 
 
 
@@ -233,6 +259,8 @@
     ...
 }
 ```
+
+
 
 
 
@@ -294,6 +322,8 @@
 
 
 
+
+
 ## CSS 基本外观属性
 
 ### color 文本颜色
@@ -328,9 +358,443 @@ rgba模式可以设置透明度数值在 **0 ~ 1** 之间
 
 ### text-indent 首行缩进
 
-> 可以用负数 建议使用em
+> 可以用负数 建议使用em (2em = 首行缩进2字符)
 
 ```css
+.style-demo {
+    text-indent: 2em;
+}
+```
+
+### text-decoration
+
+用来修改链接效果
+
+> none 默认样式
+>
+> underline文本下
+>
+> overline 文本上
+>
+> line-through 穿过文本
+
+```css
+.style-demo {
+    text-decoration: none|underline|overline|line-through
+}
+```
+
+
+
+
+
+## 块级元素
+
+块级元素会独占一行（多行），可以设置它的宽高以及对齐等属性，特点：
+
+> 1. 总是从新的一行开始
+> 2. 高度、宽度、内外边距都可以控制
+> 3. 宽度默认是100%
+> 4. 可以容纳其他行内元素（内联元素）、块元素
+
+
+
+
+
+## 行内元素
+
+行内元素不会自身不会占独立的空间，它的空间大小是根据自己字体的大小和图像尺寸支撑结构的，所以一般来说不用设置宽高和对齐等属性。
 
 ```
+常见行内元素：
+	<a> <strong> <b> <em> <i> <del> <s> <ins> <u> <span>...
+```
+
+> **行内元素特点：**
+>
+> 1. 和相邻的内联元素在同一行上
+> 2. 宽高无效，但是水平方向的内外边距（padding和margin）可以设置，垂直方向的无效
+> 3. 默认宽度就是内容的宽度
+> 4. 行内元素只能容纳文本和其他内联元素（a是特殊）
+>
+> **PS：**只有文字才能组成段落，p标签里不能放块级元素，相同的还有h1~h6、dt，他们都是文字类的块级标签，里面不能放其他块级元素。
+>
+> 行内元素中有几个特殊的标签 <img> <input> <td> 这几个标签可以设置宽高。
+
+
+
+
+
+## 行内块
+
+行内块同时具备行内元素和块元素的特点
+
+> 1. 和相邻的行内块元素在同一行上，但是它们之间会有空隙
+> 2. 默认宽和行内元素一样就是内容的宽度
+> 3. 宽高、行高、内外边距都可以设置
+
+
+
+
+
+## 标签模式转换
+
+```css
+display: inline; 转为行内元素
+
+display: block; 转换为块元素
+
+display: inline-block; 转换为行内块元素
+```
+
+
+
+
+
+## 盒子模型
+
+> CSS分三大板块：盒子模型、浮动、定位加上别的一些细节
+>
+> 盒子模型就是将整个HTML页面看作一个盒子，所有的文档标签都会有一个元素矩形框（element box），每个矩形框都由元素的内容、内边距（padding）和外边距（margin）组成。
+
+
+
+### width 宽度	height 高度
+
+> 只有块元素（block）或者行内块（inline-block）元素才能设置宽高。
+
+```css
+width: 100px;
+height: 100px;
+```
+
+
+
+### 边框 border
+
+`border-top border-bottom border-left border-right 同理`
+
+```css
+border: border-width border-style border-color;
+```
+
+`border-style (边框样式)可以设置为不同样式的边框`
+
+```css
+none: 没有边框，忽略宽度(默认值)
+solid: 单实线边框
+dashed: 虚线边框
+dotted: 点线边框
+double: 双实线边框
+```
+
+
+
+### 内边距 (padding)
+
+`padding-top padding-bottom padding-right padding-left`
+
+```css
+padding: 3px; 上下左右都是3px
+padding: 3px 6px; 上下3px 左右6px
+padding: 3px 6px 9px; 上3px 左右6px 下9px
+padding: 3px 6px 5px 4px; 上3px 右6px 下5px 左4px
+```
+
+
+
+### 外边距 (margin)
+
+> margin 属性值位置和 padding 一样
+
+`margin-top margin-bottom margin-left margin-right`
+
+
+
+### 外边距实现盒子居中
+
+> 让一个盒子水平居中元素必须是块元素而且指定了宽高
+
+```css
+/* 盒子(块元素)水平居中 */
+width: 256px;
+margin: 0 auto;
+
+/* 文字水平居中 */
+text-align: center;
+```
+
+
+
+### 清除元素默认内外边距
+
+> 行内元素只有左右内外边距，没有上下内外边距，在IE6等低版本浏览器会有问题。
+>
+> 所以尽量不要给行内元素指定内外边距。
+
+```css
+padding: 0;
+margin: 0;
+```
+
+
+
+### 外边距合并问题
+
+使用margin定义块元素的上下外边距时，可能会出现外边距的合并。
+
+如果有两个元素，一个在上面设置了外边距 margin-bottom，一个在下面设置了外边距 margin-top，则他们之间的垂直边距不是，margin-bottom与margin-top之和，而是值较大的一方，这种现象称为相邻块元素垂直外边距的合并 **外边距塌陷**
+
+**解决方案：**
+
+1. 设置父元素的上边框或者内边距为1像素
+2. 给父类添加 **overflow:hideen**
+
+
+
+### 内容宽高
+
+使用属性 width 和 height 可以控制盒子的大小
+
+符合CSS规范的盒子模型总宽高计算原则是：
+
+元素空间尺寸
+
+```css
+空间高度 = content height + padding + border + margin
+空间宽度 = content width + padding + border + margin
+```
+
+元素实际大小
+
+```css
+实际高度 = content height + padding + border + margin
+实际宽度 = content width + padding + border + margin
+```
+
+1. 大部分浏览器Firefox、Edge、Chrome和IE6以上的版本都采用W3C规范
+2. 宽高属性只能用于块级元素，对行内元素无效 (img、input标签除外)
+3. 在计算总高度的同时，应该考虑上面说的外边距塌陷的情况
+4. 一个盒子（块元素）占满父元素的宽度，如果盒子没有指定宽度，则padding不会影响改盒子的大小
+
+
+
+### 盒子模型布局稳定性
+
+稳定性排行：
+
+```
+width > padding > margin
+```
+
+1. margin 可能会出现外边距合并（塌陷），IE6以下的 margin 会加倍（bug）
+2. padding 会影响盒子的大小，需要进行加减计算，稍微有点麻烦
+
+
+
+### 怪异盒子模型
+
+```css
+box-sizing: border-box; /* 怪异盒子模型 */
+box-sizing: content-box; /* 标准盒子模型 */
+```
+
+> 怪异盒子模型的宽高计算和标准盒子模型的计算方式不同，怪异盒子模型的  content 内容宽度会把 padding 和 border 算入其中，由外向内的计算宽度
+
+
+
+### 两种盒子的区别
+
+`主要区别在于盒子的宽高计算方式不同`
+
+1. 标准盒子模型（正常）主要用于 PC 端，怪异盒子模型主要用于手机端
+2. 标准盒子模型的大小是由内向外的，由内部决定外部大小，而怪异盒子模型是由外向内的
+3. 可以设置 box-sizing 属性来使用这一特性，使其改变border宽度也不影响其它元素
+
+
+
+## 盒子模型知识点补充
+
+### 高度：
+
+> 图片标签设置了宽度之后，可以将高度设置为 auto (自动) 实现等比例自动计算
+
+### 同行宽度：
+
+> 一行内多个元素的占位宽度 (margin + border + padding + width) 相加大于容器宽度就会被挤到下一行显示
+
+### 内外边距：
+
+> 1. 外边距垂直会合并，值为最大的那一边 | 水平方向会叠加
+> 2. 如果父容器没有边界（硬性边界、边框、内边距）就会产生穿透效果 子元素的外边距会穿透父元素生效
+> 3. 内外边距都只能设置为整数
+
+### 行高与高度：
+
+> 当行高跟高度相等时，文本会垂直居中
+
+
+
+
+
+## CSS背景 (background)
+
+| 代码                                                         | 作用             |
+| :----------------------------------------------------------- | ---------------- |
+| background-color                                             | 背景颜色         |
+| background-image                                             | 背景图片地址     |
+| background-repeat                                            | 是否平铺         |
+| background-position                                          | 背景位置         |
+| background-attachment                                        | 背景固定 \| 滚动 |
+| background-size                                              | 背景大小（尺寸） |
+| background: color url repeat attachment position **or** size | 背景综合写法     |
+
+
+
+### 背景颜色 (color)
+
+> CSS3背景透明使用 rgba(0, 0, 0, 0.3) 第四个参数在 0~1 之间
+>
+> 透明属性的设置只会影响背景，不会影响元素内容
+
+```css
+background-color: hex(16进制) | rgb | rgba;
+```
+
+
+
+### 背景图片 (image)
+
+> 使用绝对或者相对地址指定背景图片
+>
+> background-image只允许一张图片展示在背景中，只有CSS3才可以多背景，可以和background-color配合使用，图片不能覆盖的地方会显示填充的颜色，如果平铺图片则会覆盖背景图片
+>
+> 建议图片地址不加引号
+
+```css
+background-image: none | url(url)
+```
+
+
+
+### 背景平铺 (repeat)
+
+| 参数      | 含义               |
+| --------- | ------------------ |
+| repeat    | 图片平铺（默认值） |
+| no-repeat | 图片不平铺         |
+| repeat-x  | 图片横向平铺       |
+| repeat-y  | 图片纵向平铺       |
+
+
+
+```css
+background-repeat: repeat | no-repeat | repeate-x | repeat-y;
+```
+
+
+
+### 图片位置 (position)
+
+> x y 坐标默认时(0% 0%) 如果只指定了一个值默认是 x 坐标
+>
+> position 大多用于背景图片的居中对齐
+
+```css
+background-position: length-x | length-y;
+background-position: position-x | position-y;
+```
+
+position参数: top | center| bottom | left | right
+
+
+
+### 背景附着 (attachment)
+
+```css
+background-attachment: scroll | fixed;
+```
+
+`scroll 滚动	fixed 固定`
+
+
+
+### 背景大小（尺寸）
+
+> 单位 px | % | cover
+>
+> 只设置 width 时 height 会等比例缩放
+
+```css
+background-size: width height;
+```
+
+
+
+
+
+## CSS复合选择器
+
+### 交集选择器
+
+```html
+<!-- CSS -->
+<style>
+    p.one {
+        color: red;
+    }
+</style>
+
+<!-- HTML -->
+<p>A</p>
+<p class="one">A</p>
+```
+
+带有 one 类的 p 标签文本变为红色，交集选择器很少用到。
+
+
+
+### 并集选择器
+
+不同选择器之间通过 <b style="color: orange">, 逗号</b> 连接
+
+```html
+<!-- CSS -->
+<style>
+    .one, .two, .three {
+        color: orange;
+    }
+</style>
+
+<!-- HTML -->
+<h1 class="one">橘色标签1</h1>
+<h1 class="two">橘色标签2</h1>
+<h1 class="three">橘色标签3</h1>
+```
+
+
+
+### 后代选择器
+
+后代选择器又称为包含选择器
+
+```html
+<!-- CSS -->
+<style>
+    div ul li {
+        color: green;
+    }
+</style>
+
+<!-- HTML -->
+<div>
+    <h1>title</h1>
+	<ul>
+        <li>list-1</li>
+        <li>list-2</li>
+    </ul>
+</div>
+```
+
+<img src="./img/后代选择器.png" style="width:150px;"></img>
 
