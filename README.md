@@ -750,7 +750,7 @@ background-size: width height;
 <p class="one">A</p>
 ```
 
-带有 one 类的 p 标签文本变为红色，交集选择器很少用到。
+`带有 one 类的 p 标签文本变为红色，第一个 p 标签不受影响`
 
 
 
@@ -758,19 +758,24 @@ background-size: width height;
 
 不同选择器之间通过 <b style="color: orange">, 逗号</b> 连接
 
-```html
-<!-- CSS -->
-<style>
-    .one, .two, .three {
-        color: orange;
-    }
-</style>
+```css
+.one,
+.two,
+.three {
+    color: orange;
+}
+```
 
+```html
 <!-- HTML -->
 <h1 class="one">橘色标签1</h1>
 <h1 class="two">橘色标签2</h1>
 <h1 class="three">橘色标签3</h1>
 ```
+
+**显示页面：<img src="./img/并集选择器.png" style="width:150px;"></img>**
+
+
 
 
 
@@ -778,14 +783,14 @@ background-size: width height;
 
 后代选择器又称为包含选择器
 
-```html
-<!-- CSS -->
-<style>
-    div ul li {
+```css
+/* CSS */
+div ul li {
         color: green;
     }
-</style>
+```
 
+```html
 <!-- HTML -->
 <div>
     <h1>title</h1>
@@ -796,5 +801,71 @@ background-size: width height;
 </div>
 ```
 
-<img src="./img/后代选择器.webp" style="width:150px;"></img>
+**显示页面：**<img src="./img/后代选择器.png" style="width:150px;"></img>
 
+
+
+### 子代选择器
+
+只能选择该元素的子代元素
+
+```css
+/* CSS */
+.style-demo > h1 {
+    color: green;
+}
+```
+
+```html
+<!-- HTML -->
+<div>
+	<h1>测试样例-1</h1>
+</div>
+    
+<div class="style-demo">
+	<h1>测试样例-2</h1>
+</div>
+```
+
+**显示页面：**<img src="./img/子代选择器.png" style="width:150px;"></img>
+
+
+
+### 伪类选择器
+
+> <b style="color:orange;">类选择器 .</b>	**.style**
+>
+> <b style="color:orange;">伪类选择器 :</b>	**:link**
+>
+> 写链接伪类时注意顺序：
+>
+> 1. :link
+> 2. :visited
+> 3. :hover
+> 4. :active
+
+**链接伪类选择器**
+
+| 伪类     | 作用                 |
+| -------- | -------------------- |
+| :link    | 未访问的链接         |
+| :visited | 已访问的链接         |
+| :hover   | 鼠标移动到连接链接上 |
+| :active  | 已经点击访问过的链接 |
+
+```css
+a {
+    font-size: 24px;
+    color: black;
+}
+
+/* 鼠标滑过字体会变为28px 而且颜色会变为天蓝色
+   当鼠标移开时会变回初始样式  
+*/
+a:hover {
+    font-size: 28px;
+    color: skyblue;
+}
+```
+
+**显示页面：**<img src="./img/gif/链接伪类.gif" style="width:150px;"></img>
