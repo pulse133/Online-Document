@@ -796,5 +796,5 @@ background-size: width height;
 </div>
 ```
 
-<img src="./img/后代选择器.png" style="width:150px;"></img>
+<img src="./img/后代选择器.webp" style="width:150px;"></img>
 
