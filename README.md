@@ -787,11 +787,9 @@ background-size: width height;
 <h1 class="three">橘色标签3</h1>
 ```
 
-**显示页面：<img src="./img/css/并集选择器.png" style="width:150px;"></img>**
+<img src="./img/css/并集选择器.png" style="width:150px;" title="显示效果"></img>
 
-
-
-
+<hr>
 
 ### 后代选择器
 
@@ -815,9 +813,9 @@ div ul li {
 </div>
 ```
 
-**显示页面：**<img src="./img/css/后代选择器.png" style="width:150px;"></img>
+<img src="./img/css/后代选择器.png" style="width:150px;" title="显示效果"></img>
 
-
+<hr>
 
 ### 子代选择器
 
@@ -841,9 +839,9 @@ div ul li {
 </div>
 ```
 
-**显示页面：**<img src="./img/css/子代选择器.png" style="width:150px;"></img>
+<img src="./img/css/子代选择器.png" style="width:150px;" title="显示效果"></img>
 
-
+<hr>
 
 ### 伪类选择器
 
@@ -882,7 +880,7 @@ a:hover {
 }
 ```
 
-**显示页面：**<img src="./img/gif/链接伪类.gif" style="width:150px;"></img>
+<img src="./img/gif/链接伪类.gif" style="width:150px;" title="显示效果"></img>
 
 
 
@@ -920,7 +918,9 @@ a:hover {
 <span class="style-base style-border">content</span>
 ```
 
-**显示效果：**<img src="./img/css/层叠性.png" style="width:150px;"></img>
+<img src="./img/css/层叠性.png" style="width:150px;" title="显示效果"></img>
+
+<hr>
 
 
 
@@ -948,9 +948,9 @@ div {
 </div>
 ```
 
-**显示效果：**<img src="./img/css/继承性.png" style="width:150px;"></img>
+<img src="./img/css/继承性.png" style="width:150px;" title="显示效果"></img>
 
-
+<hr>
 
 ### CSS 优先级
 
