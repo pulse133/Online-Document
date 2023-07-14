@@ -163,7 +163,11 @@
 
 
 
+<br>
 
+<hr>
+
+<br>
 
 # CSS (Cascading Style Sheets)
 
@@ -215,6 +219,8 @@
 
 
 
+<hr>
+
 
 
 ## CSS选择器
@@ -263,6 +269,8 @@
 ```
 
 
+
+<hr>
 
 
 
@@ -388,6 +396,8 @@ rgba模式可以设置透明度数值在 **0 ~ 1** 之间
 
 
 
+<hr>
+
 
 
 ## 块级元素
@@ -450,6 +460,8 @@ display: inline-block; 转换为行内块元素
 ```
 
 
+
+<hr>
 
 
 
@@ -637,6 +649,8 @@ box-sizing: content-box; /* 标准盒子模型 */
 
 
 
+<hr>
+
 
 
 ## CSS背景 (background)
@@ -732,6 +746,8 @@ background-size: width height;
 ```
 
 
+
+<hr>
 
 
 
@@ -871,6 +887,10 @@ a:hover {
 ```
 
 **显示页面：**<img src="./img/gif/链接伪类.gif" style="width:150px;"></img>
+
+
+
+<hr>
 
 
 
