@@ -163,6 +163,8 @@
 
 
 
+
+
 # CSS (Cascading Style Sheets)
 
 > CSS可以对前端的样式以及位置进行调整
@@ -773,7 +775,7 @@ background-size: width height;
 <h1 class="three">橘色标签3</h1>
 ```
 
-**显示页面：<img src="./img/并集选择器.png" style="width:150px;"></img>**
+**显示页面：<img src="./img/css/并集选择器.png" style="width:150px;"></img>**
 
 
 
@@ -801,13 +803,13 @@ div ul li {
 </div>
 ```
 
-**显示页面：**<img src="./img/后代选择器.png" style="width:150px;"></img>
+**显示页面：**<img src="./img/css/后代选择器.png" style="width:150px;"></img>
 
 
 
 ### 子代选择器
 
-只能选择该元素的子代元素
+只能选择该元素的子代元素，子代优先级高于后代，使用时优先选择使用子代选择器
 
 ```css
 /* CSS */
@@ -827,7 +829,7 @@ div ul li {
 </div>
 ```
 
-**显示页面：**<img src="./img/子代选择器.png" style="width:150px;"></img>
+**显示页面：**<img src="./img/css/子代选择器.png" style="width:150px;"></img>
 
 
 
@@ -869,3 +871,103 @@ a:hover {
 ```
 
 **显示页面：**<img src="./img/gif/链接伪类.gif" style="width:150px;"></img>
+
+
+
+## CSS 特性
+
+<b style="color:orange;">叠层 继承 优先级</b> 是CSS必须掌握的三个特性
+
+
+
+### CSS 层叠性
+
+举一个简单的例子 :chestnut: 当我们已经写好了一个样式，样式设置原色颜色为蓝色，字体大小为16px，但是接下来我们需要一个新的样式，它和刚才那个样式一样，但是它比前面的那个样式多了一个边框设置并且字体大小为24px，这个时候我们除了重新写一篇一模一样的并加上新规则还可以使用CSS的一特性 <b style="color:orange;">叠层性</b>
+
+`如果重复的话，谁在最底层就会是谁	CSS样式优先级 内联样式 > 内部样式 > 外联样式`
+
+```css
+/* CSS */
+.style-base {
+    color: blue;
+    font-size: 16px;
+}
+
+.style-border {
+    font-size: 24px;
+    border: 1px solid black;
+}
+```
+
+```html
+<!-- HTML -->
+<span class="style-base style-border">content</span>
+```
+
+**显示效果：**<img src="./img/css/层叠性.png" style="width:150px;"></img>
+
+
+
+### CSS继承性
+
+再举一个简单的例子 (我有很多:chestnut:) 我们写了一个 **div** 的CSS样式设置字体颜色为green，我们在div标签中写入其他内容会发现其他字体内容也是绿色，这就是继承性。
+
+> 常见的继承属性：开头是 **font- text- line-** 以及 **color** 都可以继承
+>
+> 自身有默认样式的情况下优先显示，也就是继承性优先级最低。
+
+```css
+div {
+    color: green;
+}
+
+.bg-black {
+    background: black;
+}
+```
+
+```html
+<div>
+    <h3 class="bg-black">我是div标签里的h3</h3>
+</div>
+```
+
+**显示效果：**<img src="./img/css/继承性.png" style="width:150px;"></img>
+
+
+
+### CSS 优先级
+
+权重越大优先级越高
+
+- 继承样式权重为0
+- 行内样式优先级最高，权重非常高
+- 权重相同时 CSS 会选择最排在最后的样式
+- CSS 有一个 **!important** 命令，该命令被赋予最大的优先级，不管权重大小以及位置的前后，**!important** 都拥有最大的优先级
+
+
+
+### CSS特殊性（Specificity）
+
+CSS的权重有一个计算公式，称为 CSS 特性或者 非凡性，是一个衡量 CSS 值优先级的一个标准
+
+值从左往右，越往左权重越大，数位之间没有进制
+
+| 元素/样式        | 权重值  |
+| ---------------- | ------- |
+| 继承 / *         | 0,0,0,0 |
+| 每个元素（标签） | 0,0,0,1 |
+| 每个类 / 伪类    | 0,0,1,0 |
+| 每个ID           | 0,1,0,0 |
+| 每个行内样式     | 1,0,0,0 |
+| 每个 !important  | **∞**   |
+
+权重是可以叠加的，比如下面的例子：
+
+```
+div a img : 0,0,0,3
+.bg a img : 0,0,1,2
+a:hover   : 0,0,1,1
+#only p   : 0,1,0,1
+```
+
