@@ -987,3 +987,28 @@ a:hover   : 0,0,1,1
 #only p   : 0,1,0,1
 ```
 
+<hr>
+
+<br>
+
+## vertical-align
+
+设置垂直对齐方式
+
+vertical-align 不会影响到块级元素的内容对齐，他只针对行内元素或行内块元素，通常用来控制 <b style="color: skyblue;">图片 </b>或者 <b style="color:skyblue;">表单 </b>与文字之间的对齐方式
+
+```css
+vertical-align: baseline(默认) | top | middle | [bottom sub]
+```
+
+`baseline 对齐基线、top 对齐顶线、middle 对齐中线、bottom \ sub 对齐底线`
+
+> 图片的在块元素中以基线对齐的方式 (vertical-align: baseline) 底部会有一点空隙，可以将 **img标签** 的**vertical-align**设置为**除了baseline**以外的其他属性值，最好的就解决方法就是将图片标签设置为块元素 <b style="color:greenyellow;">block</b>
+
+| 属性值                             | 效果图                                                       |
+| ---------------------------------- | ------------------------------------------------------------ |
+| vertical-align: baseline; 对齐基线 | <img src="./img/css/vertical-align/baseline.png" width="280px;"> |
+| vertical-align: middle; 对齐中线   | <img src="./img/css/vertical-align/middle.png" width="280px;"> |
+| vertical-align: top; 对齐顶线      | <img src="./img/css/vertical-align/top.png" width="280px;">  |
+| vertical-align: bottom; 对齐底线   | <img src="./img/css/vertical-align/bottom.png" width="280px;"> |
+
