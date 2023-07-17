@@ -2,7 +2,9 @@
 
 > Claw学习前端的笔记
 
-------
+<hr><br>
+
+
 
 # HTML
 
@@ -42,7 +44,7 @@
 ## img 标签
 
 ```html
-<img src="路径 | 相对路径 | 绝对路径" width="宽" height="高" alt="文字描述" title="鼠标悬停显示的内容">
+<img src="路径 | 相对路径 | 绝对路径" width="宽" height="高" alt="文字描述(必要的标签)" title="鼠标悬停显示的内容">
 ```
 
 
@@ -161,9 +163,9 @@
 <p><span></span>text</p>
 ```
 
-<hr>
+<hr><br>
 
-<br>
+
 
 # CSS (Cascading Style Sheets)
 
@@ -215,9 +217,9 @@
 
 
 
-<hr>
+<hr><br>
 
-<br>
+
 
 ## CSS选择器
 
@@ -266,9 +268,9 @@
 
 
 
-<hr>
+<hr><br>
 
-<br>
+
 
 ## CSS字体样式属性
 
@@ -326,9 +328,9 @@
 }
 ```
 
-<hr>
+<hr><br>
 
-<br>
+
 
 ## CSS 基本外观属性
 
@@ -392,9 +394,9 @@ rgba模式可以设置透明度数值在 **0 ~ 1** 之间
 
 
 
-<hr>
+<hr><br>
 
-<br>
+
 
 ## 块级元素
 
@@ -457,9 +459,9 @@ display: inline-block; 转换为行内块元素
 
 
 
-<hr>
+<hr><br>
 
-<br>
+
 
 ## 盒子模型
 
@@ -621,7 +623,10 @@ box-sizing: content-box; /* 标准盒子模型 */
 2. 标准盒子模型的大小是由内向外的，由内部决定外部大小，而怪异盒子模型是由外向内的
 3. 可以设置 box-sizing 属性来使用这一特性，使其改变border宽度也不影响其它元素
 
-<hr>
+<hr><br>
+
+
+
 
 ## 盒子模型知识点补充
 
@@ -645,21 +650,21 @@ box-sizing: content-box; /* 标准盒子模型 */
 
 
 
-<hr>
+<hr><br>
 
-<br>
+
 
 ## CSS背景 (background)
 
-| 代码                                                         | 作用             |
-| :----------------------------------------------------------- | ---------------- |
-| background-color                                             | 背景颜色         |
-| background-image                                             | 背景图片地址     |
-| background-repeat                                            | 是否平铺         |
-| background-position                                          | 背景位置         |
-| background-attachment                                        | 背景固定 \| 滚动 |
-| background-size                                              | 背景大小（尺寸） |
-| background: color url repeat attachment position **or** size | 背景综合写法     |
+| 代码                                                  | 作用             |
+| :---------------------------------------------------- | ---------------- |
+| background-color                                      | 背景颜色         |
+| background-image                                      | 背景图片地址     |
+| background-repeat                                     | 是否平铺         |
+| background-position                                   | 背景位置         |
+| background-attachment                                 | 背景固定 \| 滚动 |
+| background-size                                       | 背景大小（尺寸） |
+| background: color url repeat attachment position/size | 背景综合写法     |
 
 
 
@@ -743,9 +748,29 @@ background-size: width height;
 
 
 
-<hr>
+### 背景裁剪 (clip)
 
-<br>
+| 参数        | 含义                     |
+| ----------- | ------------------------ |
+| content-box | 将图片裁剪和内容大小一致 |
+| border-box  | 将图片裁剪至边框位置     |
+| padding-box | 将图片裁剪至内边距位置   |
+
+
+
+```css
+background-clip: content-box | border-box |padding-box;
+```
+
+设置图片原点位置 (origin)
+
+> 用来设置背景图片起始位置
+>
+> 属性值和 **clip** 一样
+
+<hr><br>
+
+
 
 ## CSS复合选择器
 
@@ -789,7 +814,10 @@ background-size: width height;
 
 <img src="./img/css/并集选择器.png" style="width:150px;" title="显示效果"></img>
 
-<hr>
+<hr><br>
+
+
+
 
 ### 后代选择器
 
@@ -815,7 +843,10 @@ div ul li {
 
 <img src="./img/css/后代选择器.png" style="width:150px;" title="显示效果"></img>
 
-<hr>
+<hr><br>
+
+
+
 
 ### 子代选择器
 
@@ -841,7 +872,10 @@ div ul li {
 
 <img src="./img/css/子代选择器.png" style="width:150px;" title="显示效果"></img>
 
-<hr>
+<hr><br>
+
+
+
 
 ### 伪类选择器
 
@@ -865,6 +899,8 @@ div ul li {
 | :hover   | 鼠标移动到连接链接上 |
 | :active  | 已经点击访问过的链接 |
 
+**一个简单的例子：**
+
 ```css
 a {
     font-size: 24px;
@@ -884,9 +920,9 @@ a:hover {
 
 
 
-<hr>
+<hr><br>
 
-<br>
+
 
 ## CSS 特性
 
@@ -920,7 +956,8 @@ a:hover {
 
 <img src="./img/css/层叠性.png" style="width:150px;" title="显示效果"></img>
 
-<hr>
+<hr><br>
+
 
 
 
@@ -950,7 +987,10 @@ div {
 
 <img src="./img/css/继承性.png" style="width:150px;" title="显示效果"></img>
 
-<hr>
+<hr><br>
+
+
+
 
 ### CSS 优先级
 
@@ -987,9 +1027,9 @@ a:hover   : 0,0,1,1
 #only p   : 0,1,0,1
 ```
 
-<hr>
+<hr><br>
 
-<br>
+
 
 ## vertical-align
 
@@ -998,7 +1038,7 @@ a:hover   : 0,0,1,1
 vertical-align 不会影响到块级元素的内容对齐，他只针对行内元素或行内块元素，通常用来控制 <b style="color: skyblue;">图片 </b>或者 <b style="color:skyblue;">表单 </b>与文字之间的对齐方式
 
 ```css
-vertical-align: baseline(默认) | top | middle | [bottom sub]
+vertical-align: baseline(默认) | top | middle | [bottom sub];
 ```
 
 `baseline 对齐基线、top 对齐顶线、middle 对齐中线、bottom \ sub 对齐底线`
@@ -1011,4 +1051,124 @@ vertical-align: baseline(默认) | top | middle | [bottom sub]
 | vertical-align: middle; 对齐中线   | <img src="./img/css/vertical-align/middle.png" width="280px;"> |
 | vertical-align: top; 对齐顶线      | <img src="./img/css/vertical-align/top.png" width="280px;">  |
 | vertical-align: bottom; 对齐底线   | <img src="./img/css/vertical-align/bottom.png" width="280px;"> |
+
+<hr>
+<br>
+
+
+
+## 溢出文字隐藏
+
+### white-space（自动换行）
+
+```css
+white-space: normal(默认值) | pre | nowrap | pre-wrap | pre-line | inherit;
+```
+
+| 属性值   | 描述                                                     |
+| -------- | -------------------------------------------------------- |
+| normal   | **默认值** 空白位置会被浏览器忽略                        |
+| pre      | 浏览器会保留空白位置 这种行为类似于 **pre** 标签         |
+| nowrap   | 文本不会换行，会一直在同一行上显示，直到遇到 **br** 标签 |
+| pre-wrap | 保留空白的序列，会正常的换行                             |
+| pre-line | 合并空白的序列，保留换行符                               |
+| inherit  | 从父元素继承 **white-space** 属性                        |
+
+<hr>
+
+### text-overflow（文字溢出）
+
+```css
+text-overflow: clip | cllipsis | string;
+```
+
+| 属性值   | 描述                             |
+| -------- | -------------------------------- |
+| clip     | 裁剪文本                         |
+| ellipsis | 使用省略号来表示被裁剪的文本     |
+| string   | 使用指定的字符来表示被裁剪的文本 |
+
+### 多行文本超出隐藏设定
+
+> 使用此方法需要注意高度和宽度的设置
+
+```
+display: -webkit-box;	/* -webkit-inline-box; 行内元素 */
+-webkit-box-orient: vertical;	/* 单词vertical释义: 垂直 */
+-webkit-line-clamp: 3;	/* 设定在第几行结束后显示 ... */
+overflow: hidden;	/* 单词hidden释义: 隐藏的 */
+```
+
+
+
+<hr><br>
+
+## opacity (透明)
+
+
+> **opacity** 单词释义 **不透明度**
+>
+> 属性值范围在 0 ~ 1 之间
+
+```css
+opacity: (0~1) | inherit;
+```
+
+`在IE8以及以下的浏览器中 使用不透明度需要写为 filter(过滤器)`
+
+```css
+filter: Alpha(opacity=(0~100));
+```
+
+
+
+<hr><br>
+## 复合选择器
+
+指定选择器后的第一个选择器：<b style="color:orange;">element-1 + element-2</b>
+
+指定选择器后的所有的 **element-2**：<b style="color:orange;">element-1 ~ element-2</b>
+
+> 复合选择器只对同一层的元素生效
+
+```css
+.wrap+h2 {
+    color: red;	/* 设置wrap类后面的第一个h2为红色字体 */
+}
+```
+
+```html
+<h1 class="wrap">我是wrap</h1>
+<h2>h2-1</h2>
+<h2>h2-2</h2>
+<h2>h2-3</h2>
+```
+
+<img src="./img/css/复合选择器+.png" style="width:150px;" title="显示效果"></img>
+
+```css
+.wrap~h2 {
+    color:red;	/* 设置wrap类后面所有的h2为红色字体 */
+}
+```
+
+<img src="./img/css/复合选择器~.png" style="width:150px;" title="显示效果"></img>
+
+<hr><br>
+
+## 伪类选择器
+
+
+
+<hr><br>
+
+
+
+# 其他技巧
+
+## 清除列表默认样式
+
+```css
+list-style: none;
+```
 
