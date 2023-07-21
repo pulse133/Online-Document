@@ -1,4 +1,4 @@
-# Online-Document
+# oOnline-Document
 
 > Claw学习前端的笔记
 
@@ -1156,11 +1156,141 @@ filter: Alpha(opacity=(0~100));
 
 <hr><br>
 
-## 伪类选择器
+## 结构伪类选择器 (CSS3)
+
+> **:first-child**	匹配该元素的父元素下的的第一个子元素
+>
+> **:last-child**	匹配该元素的父元素下的最后一个元素
+>
+> **:nth-child(n)**	匹配所选元素的父元素下的第 n 个元素
+>
+> **:nth-last-child(n)**	匹配所选元素的父元素下的第 n 个子元素的每个元素
+>
+> **:nth-of-type(n)**	匹配所选元素的父元素下同类型中的第 n 个兄弟元素
+>
+> **:first-of-type**	匹配同类型中的第一个兄弟元素
+>
+> **:last-of-type**	匹配同类型中的最后一个兄弟元素
+>
+> **:only-of-type**	匹配同类型中的父元素下唯一的一个元素
+>
+> **:not(selection)**	匹配所选元素的父元素下除了 selection(选择器) 的所有元素 
+>
+> *上面的选择器中带 **(n)** 的都可以使用公式或者 **odd奇数 even偶数***
+
+```css
+/* 选择p标签父元素下的第一个元素 */
+p:first-child {
+    style: value;
+}
+
+/* 选择p标签父元素下的最后一个元素 */
+p:last-child {
+    style: value;
+}
+
+/* 选择p标签父元素下的第二个元素如果元素不是p则无法，因为虽然选中了但因为不是p标签所以无法生效 */
+p:nth-chile(2) {
+    style: value;
+}
+
+/* 选择p标签父元素下同类型的第二个元素 */
+p:nth-of-type(3) {
+    style: value;
+}
+
+/* 选择p标签父元素下同类型的第一个元素 */
+p:first-of-type {
+    style: value;
+}
+
+/* 选择p标签父元素下同类型的第一个元素 */
+p:last-of-type {
+    style: value;
+}
+
+/* 选择只有一个子元素的父元素容器 并且这个唯一的子元素是p */
+p:only-of-type {
+    style: value;
+}
+
+p:not(.wrap) {
+    /* 选择p标签父元素下同类型除了带.wrap的p的所有p */
+    style: value;
+}
+```
 
 
 
 <hr><br>
+## 属性选择器
+
+> **^**	在开始位置
+>
+> **$**	在结束位置
+>
+> *****	在任意位置
+
+```css
+/* 选择div标签以 border 类开头的div元素 */
+div[class^="border"] {
+    color: red;
+}
+
+/* 选择div标签以 end id结尾的div元素 */
+div[id$="end"] {
+    color:red;
+}
+
+/* 选择div标签类名中任意位置有 font 的div元素 */
+div[class$="font"] {
+    color:red;
+}
+```
+
+
+
+<hr><br>
+
+
+## 伪元素 (CSS3)
+
+> ::first-letter	文本中的第一个字或者字母
+>
+> ::first-line	文本中的第一行
+>
+> ::selection	改变文本选中时的样式
+>
+> ::before	最前面的
+>
+> ::after	最后面的
+>
+> 伪元素不是真正的元素，但是可以显示在页面上，同样也可以对伪元素设置CSS样式
+>
+> 默认display:inline;	::before和::after 必须配合content使用否则无效
+
+`IE9以下不支持::的写法，如果考虑兼容性可以写为 : 不用强制写为::`
+
+<hr><br>
+## 精灵技术
+
+> 用户访问一个网站的时候每张图片都要见过一次请求才能返回给用户使用精灵技术可以很好的解决这个问题，CSS精灵是一种处理网页背景图像的方法，它可以将很多零散的的小图标这类的图片合并到一张图片中，对图片使用 position 定位来使用精灵图。
+
+```css
+bg-top {
+	width: 20px;
+	height: 20px;
+	background: url(path) no-repeat -10px -10px;
+}
+```
+
+### 制作精灵图
+
+可以自己做也可以有更好的方法：<a href="https://www.toptal.com/developers/css/sprite-generator/" style="text-decoration:none;">[ 精灵图制作网站 ]</a>
+
+<hr><br>
+
+
 
 
 
