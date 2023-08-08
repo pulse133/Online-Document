@@ -1,8 +1,10 @@
-# oOnline-Document
+# Online-Document
 
-> Claw学习前端的笔记
+Claw学习前端的笔记
 
 <hr><br>
+
+[TOC]
 
 
 
@@ -1223,7 +1225,9 @@ p:not(.wrap) {
 
 
 <hr><br>
+
 ## 属性选择器
+
 
 > **^**	在开始位置
 >
@@ -1271,8 +1275,20 @@ div[class$="font"] {
 
 `IE9以下不支持::的写法，如果考虑兼容性可以写为 : 不用强制写为::`
 
+```css
+.style::after {
+	content: '' | attr(元素属性) | counter(name);	/* 必要元素 */
+}
+```
+
+
+
 <hr><br>
+
+
+
 ## 精灵技术
+
 
 > 用户访问一个网站的时候每张图片都要见过一次请求才能返回给用户使用精灵技术可以很好的解决这个问题，CSS精灵是一种处理网页背景图像的方法，它可以将很多零散的的小图标这类的图片合并到一张图片中，对图片使用 position 定位来使用精灵图。
 
@@ -1290,15 +1306,943 @@ bg-top {
 
 <hr><br>
 
+## 表格
 
+### 创建表格
 
+```html
+<table>
+    <caption>表格标题</caption>
+    <thead>
+    	<tr>
+        	<th>标题1</th>
+            <th>标题2</th>
+            <th>标题3</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+    	<tr>
+	        <td>内容1</td>
+            <td>内容2</td>
+            <td>内容3</td>
+        </tr>
+        <tr>
+	        <td>内容1</td>
+            <td>内容2</td>
+            <td>内容3</td>
+        </tr>
+    </tbody>
+</table>
+```
 
+### 合并单元格
 
-# 其他技巧
+> 跨行合并：rowspan	跨列合并：colspan
+>
+> 合并顺序：行上优先合并左边	列上优先合并上面
 
-## 清除列表默认样式
+### 表格相关样式
+
+> 表格具有双线条边框，因为table、th、td都有自己独立的边框
+>
+> 使用折叠边框 border-collapse 来设置是否折叠为单线边框
 
 ```css
-list-style: none;
+table {
+    /* 
+	separate: 默认样式
+    collapse: 边框会合并为一条线，会忽略border-spacing和empty-cells
+    inherit: 继承父元素的border-collapse属性
+    */
+    border-collapse: separate | collapse | inherit;
+}
+```
+
+#### 单元格边框距离 border-spacing
+
+> 只能在 border-collapse: separate（边框分离）模式下使用
+
+```css
+table {
+    border-collapse: separate;
+    border-spacing: 10px 10px;
+}
+```
+
+#### 标题位置 caption-side
+
+```css
+caption {
+    caption-side: top(默认) | buttom | inherit;
+}
+```
+
+
+
+<hr><br>
+
+## 表单标签 form
+
+**一个完整的表单通常由表单控件、提示信息、表单域 3 个部分组成**
+
+<hr>
+
+**表单控件：input	select	textarea	button**
+
+> input：输入框（文本框、密码框、复选框、提交按钮、重置按钮）
+
+**提示信息：label**
+
+> 表单部分地方需要添加说明性的文字提示
+
+**表单域：form**
+
+> 相当于填写表单的容器，容纳所有的 **表单控件** 和 **提示信息** 可以定义表单数据的后台url地址
+
+### input控件
+
+| 属性        | 属性值         | 描述                         |
+| ----------- | -------------- | ---------------------------- |
+| type        | 查看type属性表 | 指定 input 类型              |
+| name        | 自定义         | 数据返回后台时的 key 值      |
+| value       | 自定义/输入    | input 输入框中的默认值       |
+| size        | 0 ~ +∞         | input 输入框在页面中的宽度   |
+| checked     | checked        |                              |
+| maxlength   | 0 ~ +∞         | 允许输入的最大字符长度       |
+| required    | required       | 在提交时要求用户必须填写此空 |
+| readonly    | readonly       | 只读内容                     |
+| placeholder | 文本           | 提示用户的文本               |
+| multiple    | multiple       | 可上传多个文件               |
+
+<h3 id="type">type属性</h3>
+
+| 属性类型 | 作用                                                         |
+| :------- | :----------------------------------------------------------- |
+| text     | 单行文本输入框（明文）                                       |
+| password | 密码框输入（密文）                                           |
+| radio    | 单选按钮                                                     |
+| file     | 输入框和“浏览”按钮提供文件上传（设置 multiple 属性可以上传多个文件） |
+| checkbox | 复选框/多选框                                                |
+| submit   | 提交按钮（将用户填写的所有数据提交至form指定url）            |
+| button   | 普通按钮                                                     |
+| reset    | 重置按钮                                                     |
+| image    | 图片提交按钮                                                 |
+| hidden   | 隐藏的文本输入框                                             |
+| number   | 限定输入字符为数字                                           |
+| deta     | 日期选择框                                                   |
+| tel      | 电话号码框                                                   |
+| time     | 时间选择框                                                   |
+| email    | 电子邮件框                                                   |
+| search   | 查询框                                                       |
+
+### label标签
+
+> 用for属性绑定一个input元素的id，当点击label标签时，就会指向绑定的input输入点
+
+```html
+<label for=""></label>
+<input type="text" id="name">
+```
+
+### texrarea 文本域
+
+```html
+<textarea cols="每行字符数量" rows="显示的行数">
+	内容
+</textarea>
+```
+
+### 下拉菜单
+
+> 可以给option添加selected="selected"属性设置默认选项
+
+```html
+<select>
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+</select>
+```
+
+
+
+<hr><br>
+
+
+
+##  浮动 float
+
+
+CSS单位机制有三种：标准流（普通流）、浮动和定位
+
+> 设置为浮动的元素display默认是 block 
+
+```css
+.style {
+	float: left | right | none;
+}
+```
+
+`关于在使用浮动布局的时候放大页面会改变布局的问题，可以使用 box-sizing: border-box (怪异盒子模型)解决`
+
+### 清除浮动
+
+#### 添加额外标签
+
+```html
+<head>
+    <style>
+        div {
+            float: left;
+        }
+        
+        .clear {
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div>content</div>
+        <div>content</div>
+        <div>content</div>
+        <div class="clear"></div>
+    </div>
+</body>
+```
+
+#### 使用after伪元素
+
+```css
+.clear::after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+/* IE6、7专有 */
+.clear {
+    *zoom: 1;
+}
+```
+
+#### 使用overflow清除
+
+`超出高度会无法显示`
+
+| 属性值  | 描述                                               |
+| ------- | -------------------------------------------------- |
+| visible | 默认值                                             |
+| hidden  | 修剪内容，超过元素大小不可见                       |
+| scroll  | 修剪内容，超出的内容可以用滚动条查看               |
+| auto    | 如果没有超出则正常显示，如果超出则使用scroll的方法 |
+| inherit | 继承                                               |
+
+#### 使用before和after清除浮动
+
+```css
+.clear:before,
+.claer:after {
+    content: "";
+    display: table;
+}
+
+.clear:after {
+    clear: both;
+}
+
+.clear {
+  *zoom:1;
+}
+```
+
+#### 安全版
+
+```css
+.clear{
+	zoom:1;
+}
+.clear:after,
+.clearfix:before{
+    content:"";
+    display:table;
+}
+.clear:after{
+    clear:both;
+    visibility:hidden;
+    font-size:0;
+    height:0;
+}
+```
+
+
+
+<hr><br>
+## 定位 position
+
+#### position属性值
+
+| 属性值   | 描述                                         |
+| -------- | -------------------------------------------- |
+| static   | 默认定位方式                                 |
+| relative | 相对定位，在自己原始文档流的位置进行定位     |
+| absolute | 绝对定位，相对于上一个已经定位的父元素进定位 |
+| fixed    | 固定定位，基于浏览器视窗定位                 |
+
+```css
+.style {
+	position: static(默认) | relative | absolute | fixed;
+}
+```
+
+#### 偏移量
+
+> 定位之后需要配合偏移量使用：**top	bottom	left	right**
+
+```css
+.style {
+	position: relative | absolute | fixed;
+    left: 10px;
+    top: 10px;
+}
+```
+
+
+
+### 静态定位 static
+
+静态位置就是元素在HTML文档流中默认的位置，也是标准文档流的特性
+
+
+
+### 相对定位 relative
+
+相对定位就是用元素在他标准流中的位置进行定位
+
+
+
+### 绝对定位 absolute
+
+绝对定位的位置参考为相对定位父级的左上角定点
+
+绝对定位于相对定位设置 left right时 都会保留自身外边距
+
+绝对定位通过边偏移移动位置，但是它完全脱标，完全不占位置。
+
+绝对定位元素的宽度高度100%  是相对于定位父级来的 不是结构父级
+
+**绝对定位与相对定位不同的地方在于：**
+
+> 1. 绝对定位完全脱标 相当于自建一个新的层级
+> 2. 绝对定位的移动相对坐标原点为 相对定位父级的左上角原点
+>    1. 没有相对定位父级的情况下 以浏览器窗口显示区域(window view)左上角为定位原点
+>    2. 有相对定位父级(绝对、固定或相对定位)的父元素/祖先的情况下 以相对定位父级的左上角为定位原点
+> 3. 绝对定位的宽度百分比 继承自相对定位父级 并不继承于 结构父级
+
+`定位父级可以是除static以外的三个元素`
+
+### 固定定位 fixed
+
+固定定位的特点：
+
+1. 固定定位的元素跟然后元素都没有关系，只认浏览器窗口(window view)。
+2. 固定定位完全脱标，不占有位置，不随着滚动条滚动。
+
+
+
+### 绝对定位盒子水平/垂直居中
+
+普通盒子可以将margin的左右设置为auto就可以，但是在绝对定位上无效
+
+```css
+/* 方法一 */
+.style {
+    position: absolute;
+    width:100px; 
+    height:100px;
+    left:50%;
+    top:50%;
+    margin-bottom: -100px;
+    margin-right: -100px;
+}
+
+/* 方法二 */
+.style {
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	background-color: aqua;
+}
+```
+
+### 叠放次序 z-index
+
+同一个位置有多个定位元素时会发生重叠现象，默认情况下，谁写在文档后面谁就在最上面，可以设置 z-index(默认0) 来修改优先级，数值越大优先级越高
+
+
+
+### 定位总结
+
+| 定位模式          | 是否脱标/占位置  | 是否可以使用偏移量 | 移动位置基准                     |
+| ----------------- | ---------------- | ------------------ | -------------------------------- |
+| static 静态       | 正常模式，不脱标 | 不可以             | 正常模式                         |
+| relative 相对定位 | 脱标，占位置     | 可以               | 相对于自生位置移动               |
+| 绝对定位 absolute | 脱标，不占位置   | 可以               | 相对于定位父级位置移动           |
+| fixed 固定定位    | 脱标，不占位置   | 可以               | 相对于浏览器窗口位置移动（固定） |
+
+`和浮动一样，当给元素添加了绝对定位(absolute)和固定定位(fixed)之后，元素的display也会转换为block(块)模式`
+
+<hr><br>
+## CSS2文本补充
+
+| 属性            | 描述                                 | 属性值                                                       |
+| --------------- | ------------------------------------ | ------------------------------------------------------------ |
+| color           | 设置文本颜色                         | rgb rgba HEX                                                 |
+| direction       | 设置文本方向                         | ltr(左-右) rtl(右-左)                                        |
+| letter-spacing  | 设置字符间距                         | px                                                           |
+| line-height     | 设置行高                             | px                                                           |
+| text-align      | 设置文本对齐方式                     | left \| center \| right \| justify(两端对齐)                 |
+| text-decoration | 添加划线                             | none \| underline \| overline \| line-through                |
+| text-indent     | 设置文本首行缩进                     |                                                              |
+| text-transform  | 设置文本字母                         | capitalize(单词首字母大写) \| uppercase(全大写) \| lowercase(全小写) |
+| vertical-align  | 设置元素垂直对齐                     | baseline \| middle \| super \| sub \| top \| bottom \| text-top \| text-bottom |
+| white-space     | 设置文本中空白的处理方式（控制换行） | normal(默认 忽略空白) \| pre(保留空白) \| nowrap(文本不换行) \| pre-wrap(保留空白 正常换行) \| pre-line(合并空白 保留换行符) |
+| word-spacing    | 设置字符间距                         | px em                                                        |
+
+<hr><br>
+
+## CSS3文本补充
+
+| 属性            | 描述                                     | 属性值                                                       |
+| --------------- | ---------------------------------------- | ------------------------------------------------------------ |
+| text-align-last | 设置对齐最后一行或者是接着换行符之前的行 | left right justify center                                    |
+| text-overflow   | 设置当文本溢出包含元素时的样式           | clip(裁剪) \| ellipses(省略号)                               |
+| text-shadow     | 设置文本阴影                             | 参数一(水平偏移) <br>参数二(垂直偏移)<br>参数三(颜色)        |
+| word-break      | 规定非中日韩文本的换行规则               | break-all(单词内换行)<br>keep-all(只在半角空格或者连字符处换行) |
+| word-wrap       | 允许对超过元素长度的单词分割换行到下一行 | normal(不换行) \| break-word(换行)                           |
+
+
+
+<hr><br>
+
+# CSS3
+
+## border-radius（圆角）
+
+> **一个参数：**四个角
+>
+> **两个参数：**（左上，右下）（右上，左下）
+>
+> **三个参数：**（左上）（右上，左下）（右下）
+>
+> **四个参数：**（左上）（右上）（右下）（左下）
+>
+> **四 / 四 个参数：**和标准的四个参数一样 **/** 左边四个是 **y** 值； **/** 右边四个是x值。
+
+```css
+/* 复合写法 */
+.style {
+    border-radius: 12px |50%;
+}
+
+/* 单例写法 */
+.style {
+	border-top-left-radius: 2em;
+    border-bottom-right: 2em;
+    ...
+}
+```
+
+<hr><br>
+
+### border-image（边框图片）
+
+> 可以将图片设置为边框
+
+```css
+.style {
+    border-image: 图片路径 内偏移量 宽度 边框外部绘制量 设置铺满|拉伸;
+    border-image: url(path) 30 round;
+    
+    /* 单例写法 */
+    border-image-source:;
+    border-image-slice:; 
+    border-image-width:;
+    border-image-outset:;
+    border-image-repeat:;
+}
+```
+
+
+
+### border-shadow（盒子阴影）
+
+```css
+.style {
+    box-shadow: x偏移量 y偏移量 模糊半径 扩展半径 阴影颜色 模式(内。外);
+    box-shadow: 0 10px 15px 4px black inset
+}
+```
+
+
+
+## CSS 渐变	(Gradients)
+
+> **线性渐变（Linear Gradient）上下左右对角方向**
+>
+> **径向渐变（Radial Gradient）由中心定义**
+>
+> 颜色可以使用透明度 rgba
+
+```css
+.style {
+    /* 默认从上到下 */
+    background-image: linear-gradient(red, blue);
+    
+    /* 从左到右 */
+    background-image: linear-gradient(to right, red, blue);
+    
+    /* 左上到右下 */
+    background-image: linear-gradient(to bottom right, red, blue);
+    
+    /* 任意角度 */
+	background-image: linear-gradient(45deg, red, blue)
+}
+```
+
+**deg 大部分浏览器使用了旧的标准默认情况下 0deg 就是从左到右 90deg 才是从上到下** 
+
+<img src="img/css/deg.jpg" alt="img" style="zoom:50%" />
+
+颜色可以设置多种
+
+```css
+.style {
+    /* 彩虹色 */
+    background-image: linear-gradient(red, orange, yellow, green, blue, indigo, violet)
+}
+```
+
+重复线性渐变
+
+```css
+.style {
+    background-image: repeating-linear-gradient(red, yellow 20%, blue %10%)
+}
+```
+
+
+
+### 径向渐变
+
+```css
+.style {
+    /* 普通样式 */
+    background-image: radial-gradient(red, yellow, green);
+    
+    /* 分配比例 */
+    background-image: radial-gradient(red %10, yellow %20, blue %40);
+    
+    /* 设置形状（默认是椭圆 ellipse） */
+    background-image: radial-gradient(circle, red, yellow, green);
+    
+    /* 重复渐变 */
+    background-image: repeating-radial-gradient(red, yellow 10%, green 15%);
+}
+```
+
+<hr><br>
+
+
+
+## CSS3 transform 2d变换
+
+> 在平面上的平移(translate)、旋转(rotate)、缩放(scale)、倾斜(skew)
+
+```css
+
+.style {
+    /* 复合写法 */
+	transform: translate() rotate() scale() skew();
+    transform-origin: x-axis y-axis z-axis;
+    
+    /* translate(x值, y值) 平移 */
+    /* 单独设置 translateX/translateY */
+    transform: translate(10px, 40px);
+    
+    /* rotate(旋转值) 旋转 单位:deg*/
+    transform: rotate(45deg);
+    
+    /* scale(等比例缩放值)/scale(x缩放值, y缩放值) 缩放 */
+    transform: scale(2,4);
+    
+    /* skew(x值, y值) 倾斜 单位:deg */
+    transform: skew(10deg, 30deg);
+}
+```
+
+<hr><br>
+
+## CSS3 transition（过度）
+
+```css
+.style {
+    transition: 过度属性名称 过度需要的时间 过度速度曲线 延时过度开始时间;
+   	transition: color 1s linear 0.5s;
+}
+```
+
+| 值           | 描述                                                         |
+| ------------ | ------------------------------------------------------------ |
+| linear       | 从开始到结束都是相同的速度（等于：cubic-bezier(0,0,1,1)）    |
+| ease         | 开始慢随后变快结束又变慢（等于：cubic-bezier(0.25, 0.2, 0.25, 1) |
+| ease-in      | 开始慢随后变快（等于 cubic-bezier(0.42, 0, 1, 1)）           |
+| ease-out     | 结束慢（等于 cubic-bezier(0, 0, 0.58, 1)）                   |
+| ease-in-out  | 和ease差不多（等于 cubic-bezier(0.42, 0, 0.58, 1)）          |
+| cubic-bezier | cubic-bezier(n, n, n, n) n 的值可以是0~1之间                 |
+
+> cubic-bezier是贝兹曲线的绘画方法
+
+<img src="img/css/贝兹曲线.jpg">
+
+<hr><br>
+## CSS3 animation @keyframes（帧动画）
+
+```css
+@keyframes AnimationName {
+	0% {
+        color、left、width等属性;
+    }
+    25% {
+        color、left、width等属性;
+    }
+    50% {
+        color、left、width等属性;
+    }
+    100% {
+        color、left、width等属性;
+    }
+}
+```
+
+### 播放动画 animation
+
+```css
+.style {
+	animation: Name(动画帧名字) | duration(持续时间) | timing-function(贝兹曲线) | delay(延迟时间) | iteration-count(迭代次数) | direction(动画方向)
+}
+```
+
+| 属性            | 单位                                                         |
+| --------------- | ------------------------------------------------------------ |
+| duration        | s(秒)                                                        |
+| timing-function | ease \| linear \| ease-in \| ease-out \| ease-in-out \|cubic-bezier(0,0,0) |
+| delay           | s(秒)                                                        |
+| iteration-count | number \| infinite(无限一直循环)                             |
+| direction       | normal \| alternate                                          |
+
+
+
+### animation-play-state
+
+> 控制动画播放状态：running(播放(默认值))、pause(暂停)
+
+
+
+# CSS3 flex 弹性布局
+
+> 传统的布局方式基于**盒子模型**，依赖属性 **display float position** 对于一些特殊的布局相对来说比较麻烦，如**垂直居中**就不容易实现。
+>
+> 2009年 W3C提出了新方案 **flex** 布局，它可以简便、完整、且具有响应式的实现各种页面布局。目前所有浏览器均支持，flex布局已经是现在主流的布局方式，特别是在移动端、小程序上表现出色。->[flex](flex\flex.md)
+
+
+
+## Web字体
+
+### 字体格式
+
+.ttf .otf .woff .eot .svg
+
+
+
+### 字体图标
+
+> 字体图标可以和图片一样，更改透明度、旋转等，同时它本质上是属于文字，它也拥有颜色、阴影、透明效果等各种属性，本身体积会更小，但是携带的信息没有缩减，放大缩小不会失真，几乎支持所有浏览器，移动端很常用。
+
+
+
+### 字体包网站
+
+**icomoon字库：**http://icomoon.io
+
+**阿里icon font字库：**http://www.iconfont.cn/
+
+**fontello：**http://fontello.com/
+
+**Font-Awesome：**http://fortawesome.github.io/Font-Awesome/
+
+**Glyphicon Halflings：**http://glyphicons.com/
+
+**Icons8：**https://icons8.com/
+
+
+
+### 字体引入到HTML
+
+```css
+/* 声明字体 */
+@font-face {
+  font-family: "font-icon";
+  src: url('fonts/icomoon.eot?7kkyc2');
+  src: url('fonts/icomoon.eot?7kkyc2#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?7kkyc2') format('truetype'),
+    url('fonts/icomoon.woff?7kkyc2') format('woff'),
+    url('fonts/icomoon.svg?7kkyc2#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 给盒子使用该字体 */
+span {
+  font-family: "font-icon";
+}
+
+/* 添加内容使用字体 */
+span::before {
+  content: "\e913";
+}
+
+/* 自定义图标 */
+.iconfont {
+  font-family: "font-icon" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+```
+
+```html
+<!-- 应用于页面(Unicode引用) -->
+<span class="iconfont">&#x33;</span>
+```
+
+
+
+### Symbol引用
+
+> 和前面上面不一样的是，它支持多色图标，缺点也明显，兼容性差，浏览器渲染 SVG 性能一般，还不如直接使用图片
+
+
+
+## 兼容处理
+
+### meta强制解析模式
+
+> x-ua-compatible 用来指定IE浏览器解析编译页面的model
+> x-ua-compatible 头标签大小写不敏感，必须用在 head 中，必须在除 title 外的其他 meta 之前使用。
+
+```html
+<meta http-equiv="x-ua-compatible" content="IE=8" >
+<meta http-equiv="x-ua-compatible" content="IE=EmulateIE8" >
+<meta http-equiv="x-ua-compatible" content="IE=edge" >
+<meta http-equiv="x-ua-compatible" content="IE=7,9,10" >
+<meta http-equiv="x-ua-compatible" content="IE=Edge,chrome=1" >
+```
+
+### 指定多和浏览器(360、搜狗)渲染内核
+
+> **极速核：**webkit	
+>
+> **ie兼容内核：**ie-comp	
+>
+> **ie标准内核：**ie-stand
+
+```html
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+```
+
+
+
+### 兼容前缀
+
+| 浏览器前缀 | 浏览器                                     |
+| ---------- | ------------------------------------------ |
+| -webkit-   | Google Chrome \| Safari \| Android Browser |
+| -moz-      | Firefox                                    |
+| -ms-       | IE \| Edge                                 |
+| -o-        | Opera                                      |
+| -khtml-    | Konqueror                                  |
+
+> 如果css样式在主流浏览器中需要加兼容前缀才能生效, 就先写兼容写法 最后写标准写法。
+
+```css
+.style {
+    -webkit-box-shadow: 2px 2px 4px #333;
+    -moz-box-shadow: 2px 2px 4px #333;
+    box-shadow: 2px 2px 4px #333;
+}
+```
+
+
+
+### 兼容查询
+
+**[工具网站](https://www.caniuse.com/)**
+
+> 输入要查询的属性一般有一下三种情况：
+>
+> 1、红色标签代表 完全不兼容
+>
+> 2、绿色标签代表 完全兼容
+>
+> 3、黄色标签代表 兼容但需要加 兼容方案
+
+
+
+## 3D变换 transform3D
+
+**位置属性：**
+
+1. translateX
+2. translateY
+3. translateZ
+4. translate3D(x, y, z)
+
+
+
+### 3D景深 perspective
+
+> z轴的深度 perspective只影响3D元素，默认情况下 Z轴 的起始位置在水平线垂直线的交叉点，可以设置perspactive-origin来调整起始位置
+
+```css
+.style{
+    perspactive: 100px;
+    perspactive: 
+}
+```
+
+
+
+### transform-style
+
+> 必须设置 transform 才可以进行3D的变换
+
+| 值          | 描述                       |
+| :---------- | :------------------------- |
+| flat        | 子元素将不保留其 3D 位置。 |
+| preserve-3d | 子元素将保留其 3D 位置。   |
+
+```css
+.style {
+    transform-style: flat | preserve-3d;
+}
+```
+
+
+
+### backface-visibility 
+
+> backface-visibility 元素背面是否可见
+
+| 值      | 描述             |
+| :------ | :--------------- |
+| visible | 背面是可见的。   |
+| hidden  | 背面是不可见的。 |
+
+
+
+## visibility
+
+> visibility 用来控制一个元素是否可见，与 display: none; 不一样的是display: none; 浏览器不会渲染此元素，而使用visibility隐藏元素，元素还是存在文档流当中，只是不可见。
+>
+> 1、visibility 有继承性，给父元素设置了visibility: hidden; 后，它的子元素也会继承这个属性跟着隐藏。
+>
+> 2、设置属性 visibility: hidden; 不会影响计数器计数，而 display:none 是直接不存在，也就会有相应的影响。
+>
+> 3、transition 支持 visibility属性，但是不支持display。
+>
+> 4、因为visibility有继承，所以子元素需要显示可以单独设置，visibility:visible; 来显示该元素。
+>
+> 5、属性 opacity 也有继承性，但是对子元素单独设置 opacity 来将其元素重新显示。
+
+
+
+## filter 滤镜
+
+| 属性           | 属性值           |
+| -------------- | ---------------- |
+| none           | 默认值（无效果） |
+| blur (px)      | 高斯模糊         |
+| brightness (%) | 控制亮度         |
+| contrast (%)   | 对比度           |
+| grayscale      | 灰度             |
+
+
+
+## CSS 变量
+
+> 设置统一变量，方便修改维护，而且变量也有权重关系
+
+```css
+/* 声明变量 */
+body {
+    --value: red;
+}
+
+.style {
+    /* 调用变量 */
+    color: var(--value);
+    /* 变量可以有多个参数 如果第一个不存在会选择第二个参数且不管后面有几个参数都算是第二参数 */
+    color: var(--value, #fff);
+}
+```
+
+
+
+## CSS content 计数器
+
+> 设置一个初始变量来工具规则递增
+
+### CSS 计数器属性
+
+- **counter-reset - 创建/重置计数器**
+  - `counter-reset: counter名称`
+
+- **conter-increment - 递增值**
+  - `counter-increment: counter名称 起始数值(默认1)`
+- **counter() 或 counters 函数将计数器添加到content中**
+  - 配合伪元素的 `content` 使用 `content: counter(counter名称)`
+
+```html
+<head>
+	<style>
+        .container {
+            counter: counter-1;
+        }
+        
+        .container p::before {
+			content: '这是第 ' counter(counter-1) '个元素';
+            display: inline;
+            counter-increment: counter-1 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <p></p>
+        <p></p>
+    </div>
+</body>
 ```
 
