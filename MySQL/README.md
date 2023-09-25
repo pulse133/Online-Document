@@ -69,7 +69,9 @@ create table t_name (
 );
 ```
 
-#### 约束条件
+
+
+### 约束条件
 
 ```mysql
 primary key		-- 主键
@@ -80,7 +82,9 @@ auto_increment	-- 自增
 default	-- 设置默认值
 ```
 
-#### 表的修改
+
+
+### 表的修改
 
 ```mysql
 alter table old_table rename new_table;	-- 修改表名称
@@ -91,7 +95,9 @@ alter table t_name drop 属性名;	-- 删除字段
 
 ```
 
-#### 增删改查
+
+
+### 增删改查
 
 ```mysql
 insert into t_name (字段名) value(v1, v2, v3);	-- 增 字段名可有可无
@@ -113,14 +119,16 @@ select  * from t_table where id=1 and uname='二狗';	-- and 并且 匹配多个
 select * from t_table where id=1 and uname="二狗" or uname="狗大";	-- or 或者
 ```
 
-#### like
+
+
+### like
 
 | 字符 |   含义   |
 | :--: | :------: |
 |  %   | 匹配多个 |
 |  _   | 匹配单个 |
 
-#### 聚合函数
+### 聚合函数
 
 |  函数   |         含义         |
 | :-----: | :------------------: |
@@ -136,5 +144,55 @@ select sum(id) from t_table;
 select avg(id) from t_table;
 select max(id) from t_table;
 select min(id) from t_table;
+```
+
+
+
+## 分组查询 
+
+**表数据内容如下**
+
+|  id  | uname |
+| :--: | :---: |
+|  1   | 狗大  |
+|  2   | 狗二  |
+|  3   | NULL  |
+|  4   | 狗二  |
+
+### group by 配合 聚合函数
+
+```mysql
+select uname, count(*) from t_table group by uname;
+```
+
+按名字分组，count函数统计出现次数，显示结果如下
+
+| uname | count(*) |
+| :---: | :------: |
+| 狗大  |    1     |
+| 狗二  |    2     |
+| NULL  |    1     |
+
+
+
+### group by 配合 having
+
+```mysql
+select uname, count(*) from t_table group by uname having count(*)=2;
+```
+
+按名字分组，count函数统计出现次数，并且使用having判断count(*)返回满足等于2的结果，显示结果如下
+
+| uname | count |
+| :---: | :---: |
+| 狗二  |   2   |
+
+## limit
+
+使用limit控制输出行数 **limit [起始位置]，[结束位置]**
+
+```mysql
+select * from t_table limit 2;	-- 匹配到第2个元素
+select * from t_table limit 1, 3;	-- 从第2个元素到4个元素
 ```
 
