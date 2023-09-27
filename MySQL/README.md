@@ -80,6 +80,7 @@ not null	-- 不能为空
 unique	-- 唯一 不能重复
 auto_increment	-- 自增
 default	-- 设置默认值
+verchar
 ```
 
 
@@ -89,10 +90,9 @@ default	-- 设置默认值
 ```mysql
 alter table old_table rename new_table;	-- 修改表名称
 alter table t_name modify 属性名 数据类型;	-- 修改表字段的数据类型
-alter table t_name change 旧属性名 新属性名 新数据类型;	-- 修改新的字段名和属性数据类型
+alter table t_name change 旧属性名 新属性名;	-- 修改表中字段名
 alter table t_name add 属性名 数据类型 [条件约束...];	-- 增加新字段
 alter table t_name drop 属性名;	-- 删除字段
-
 ```
 
 
@@ -194,5 +194,27 @@ select uname, count(*) from t_table group by uname having count(*)=2;
 ```mysql
 select * from t_table limit 2;	-- 匹配到第2个元素
 select * from t_table limit 1, 3;	-- 从第2个元素到4个元素
+```
+
+
+
+
+
+# 子查询
+
+> 将内层的查询结果作为外层的比较的条件
+
+```mysql
+/* where型 */
+select * from t_table where t_table.id in (select id from t_table2 where t_table.id<=2);
+
+/* from型	-- 必须使用 as 定义别名 */
+select * from (select uname from t_table where id=1) as t1;
+
+/* exists型	-- exists()内有查询数据成立外面才会执行 可以理解为没有返回值则为假，反之亦然 */
+select * from t_table where exists(select * from t_table2 where uname="XX");
+
+/* union型	联合查询 两个表列数必须一样 */
+select * from t_table union select * from t_table2;
 ```
 
