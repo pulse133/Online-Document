@@ -28,7 +28,7 @@ mysql -u root -p	登录MySQL
 ## 基础语法
 
 ```mysql
-alter user 'root'@'localhost' identified by '修改密码'	--修改密码
+alter user 'root'@'localhost' identified by '修改密码';	--修改密码
 
 show databeses;	-- 显示所有数据库
 
