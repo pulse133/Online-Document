@@ -19,7 +19,7 @@
 mysqld --install	安装MySQL
 mysqld --initialize --console	初始化MySQL
 mysqld --remove mysql	卸载MySQL
-net start/sopt mysql	启动/停止MySQL服务
+net start/stop mysql	启动/停止MySQL服务
 mysql -u root -p	登录MySQL
 ```
 
