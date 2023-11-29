@@ -75,11 +75,11 @@ create table t_name (
 
 ```mysql
 primary key -- 主键
-foreign key	-- 外键
-not null	-- 不能为空
-unique	-- 唯一 不能重复
-auto_increment	-- 自增
-default	-- 设置默认值
+foreign key -- 外键
+not null -- 不能为空
+unique -- 唯一 不能重复
+auto_increment -- 自增
+default -- 设置默认值
 verchar
 ```
 
