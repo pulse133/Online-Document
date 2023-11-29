@@ -16,11 +16,11 @@
 ## 终端命令语句
 
 ```
-mysqld --install	安装MySQL
-mysqld --initialize --console	初始化MySQL
-mysqld --remove mysql	卸载MySQL
-net start/stop mysql	启动/停止MySQL服务
-mysql -u root -p	登录MySQL
+mysqld --install 安装MySQL
+mysqld --initialize --console 初始化MySQL
+mysqld --remove mysql 卸载MySQL
+net start/stop mysql 启动/停止MySQL服务
+mysql -u root -p 登录MySQL
 ```
 
 
@@ -28,20 +28,20 @@ mysql -u root -p	登录MySQL
 ## 基础语法
 
 ```mysql
-alter user 'root'@'localhost' identified by '修改密码';	--修改密码
+alter user 'root'@'localhost' identified by '修改密码'; -- 修改密码
 
-show databases;	-- 显示所有数据库
+show databases; -- 显示所有数据库
 
-use DatabaseName;	-- 切换使用数据库
-show tables;		-- 显示当前进入的数据库中的所有表
+use DatabaseName; -- 切换使用数据库
+show tables; -- 显示当前进入的数据库中的所有表
 
-create database db1;	-- 创建数据库 db1
-drop database db1;	-- 删除数据库 db1
-alter database db1 charset utf8;	-- 修改数据库
+create database db1; -- 创建数据库 db1
+drop database db1; -- 删除数据库 db1
+alter database db1 charset utf8; -- 修改数据库
 
-select database();	-- 显示当前所在文件夹
+select database(); -- 显示当前所在文件夹
 
-show status;	-- 显示数据库状态
+show status; -- 显示数据库状态
 ```
 
 
